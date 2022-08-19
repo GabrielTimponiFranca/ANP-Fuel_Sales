@@ -1,4 +1,4 @@
-def _get_raw_data(url):
+def _get_raw_data(url, **kwargs):
     import urllib
     from datetime import datetime
     from services.path.check_path import _get_resource_path
@@ -11,4 +11,4 @@ def _get_raw_data(url):
 
     urllib.request.urlretrieve(url, path)
 
-    return f"{path}"
+    kwargs.xcom_push(key="path_raw_file", value=value)

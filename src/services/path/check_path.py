@@ -9,7 +9,7 @@ def _get_resource_path(relative_path=None):
         base_path = os.path.abspath(".")
 
     if relative_path is None:
-        return base_path.replace('\\', '/')
+        return base_path.replace("\\", "/")
 
     return os.path.join(base_path, relative_path).replace("\\", "/")
 
@@ -21,8 +21,7 @@ def _check_and_create_folder(path):
         os.mkdir(path)
 
 
-
-def _create_folder():
+def _create_folder(**kwargs):
     PATH = _resource_path()
 
     folders = ["data", "data/csv", "data/parquet", "data/raw"]

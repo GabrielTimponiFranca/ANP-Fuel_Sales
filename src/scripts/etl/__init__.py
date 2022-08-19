@@ -20,10 +20,9 @@ MONTHS = {
 }
 
 
-def get_data(file, table_number):
+def get_data(path_file, table_number):
     import numpy as np
     from pandas import DataFrame
-    
 
     fields = {"n_product": 1, "n_state": 4}
 
@@ -38,7 +37,7 @@ def get_data(file, table_number):
         "unit": [],
     }
 
-    with _initialize_excel(file) as wb:
+    with _initialize_excel(path_file) as wb:
         ws = wb.Sheets("Plan1")
 
         length = {
@@ -138,7 +137,9 @@ def get_data(file, table_number):
     return DataFrame.from_dict(data)
 
 
-def _read_raw_data(file):
+def _read_raw_data(path_file, **kwargs):
     from pandas import concat
 
-    df = concat([get_data(file, 1), get_data(file, 3)], ignore_index=True)
+    df = concat([get_data(path_file, 1), get_data(path_file, 3)], ignore_index=True)
+
+    kwargs.xcom_push(key="df", value=df)

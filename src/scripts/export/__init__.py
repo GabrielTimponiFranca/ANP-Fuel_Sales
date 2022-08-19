@@ -1,4 +1,4 @@
-def export(df):
+def export(df, **kwargs):
     from datetime import datetime
     from ..etl.resource import _resource_path
 
@@ -8,6 +8,8 @@ def export(df):
 
     path = f"{PATH}/src/data/csv/Dados_{date}"
 
-    df.to_csv(f'{path}.csv', sep=';', index=False)
+    df.to_csv(f"{path}.csv", sep=";", index=False)
 
-    df.to_parquet(f'{path}.parquet')
+    df.to_parquet(f"{path}.parquet")
+
+    kwargs.xcom_push(key="path_final_df", value=path)
