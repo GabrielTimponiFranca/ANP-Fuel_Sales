@@ -11,4 +11,4 @@ def _get_raw_data(url, **kwargs):
 
     urllib.request.urlretrieve(url, path)
 
-    kwargs.xcom_push(key="path_raw_file", value=value)
+    kwargs.xcom_push(key="path_raw_file", value=path)
